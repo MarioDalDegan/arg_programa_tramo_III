@@ -21,4 +21,4 @@ usuarioRouter.put('/usuario',editarUsuario )
 // Eliminar usuario
 usuarioRouter.delete('/usuario', eliminarUsuario )
 
-module.exports = usuarioRouter
+module.exports = usuarioRouter;

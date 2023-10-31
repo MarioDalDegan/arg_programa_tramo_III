@@ -1,0 +1,44 @@
+const jwt = require('jsonwebtoken');
+
+const AutenticacionController = {}
+
+const JWT_KEY = process.env.JWT_KEY;
+
+const usuarios = [
+    {id: 1, usuario:'Lord', contraenia: '123456'},
+    {id: 2, usuario:'Lady', contraenia: 'abcedef'},
+    ]
+
+AutenticacionController.autenticar = (req, res) => {
+    //Simular autenticación de usuario
+    try {
+        let token = jwt.sign({ id: 1 }, JWT_KEY );
+
+        res.json({token: token})
+    } catch (error){
+        res.status(500).json({mensaje: 'se ha gnerado un error', error: error})
+    };
+
+    } 
+    
+
+AutenticacionController.registrar = (req, res) => {
+    //Simular registro
+
+    }
+
+AutenticacionController.verificarToken = (req, res) => {
+    //Controlar registro
+    const token = req.body;
+    try{
+    var desencriptado = jwt.verify(token, JWT_KEY);
+    console.log(desencriptado) // bar
+
+    res.json({ datos: desencriptado})
+    } catch (error){
+        res.status(500).json({mensaje: 'se ha generado un error', error: error})
+    }
+
+    }
+
+module.exports = AutenticacionController;
